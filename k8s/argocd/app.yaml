@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: threat-intel
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: threat-intel
+  source:
+    repoURL: https://github.com/<org>/threat-intel-platform
+    path: k8s/overlays/prod
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
