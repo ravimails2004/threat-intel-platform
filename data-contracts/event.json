@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "user_id": { "type": "string" },
+    "ip": { "type": "string" },
+    "action": { "type": "string" }
+  },
+  "required": ["event_id", "user_id"]
+}
