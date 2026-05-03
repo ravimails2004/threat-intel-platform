@@ -3,41 +3,72 @@
 ```text
 
 threat-intel-platform/
-├── README.md
-├── docker-compose.yaml
 │
-├── infra/
-│   └── terraform/
-│       ├── main.tf
-│       ├── variables.tf
-│       └── outputs.tf
-│
-├── k8s/
-│   ├── namespace.yaml
-│   ├── kafka.yaml
-│   ├── inference-deployment.yaml
-│   └── hpa.yaml
-│
-├── services/
+├── apps/                          # All deployable workloads
 │   ├── ingestion-service/
+│   ├── feature-service/
 │   ├── inference-service/
-│   └── alert-manager/
+│   ├── alert-manager/
+│   └── soar-executor/
 │
 ├── streaming/
-│   └── flink-job/
-│       └── job.py
+│   ├── flink-jobs/
+│   └── kafka-connect/
 │
 ├── ml/
-│   ├── model.py
-│   └── train.py
+│   ├── training/
+│   ├── serving/                  # Triton / TorchServe configs
+│   ├── registry/                 # Model metadata
+│   └── feature-store/
 │
-├── data-contracts/
-│   └── event.json
+├── platform/
+│   ├── auth/                     # OIDC / IAM integration
+│   ├── config/                   # centralized config (env/consul)
+│   └── common-lib/
+│
+├── infra/
+│   ├── terraform/
+│   │   ├── modules/
+│   │   │   ├── eks/
+│   │   │   ├── kafka-msk/
+│   │   │   ├── flink/
+│   │   │   └── gpu-nodegroup/
+│   │   └── envs/{dev,staging,prod}
+│   │
+│   └── policies/                 # OPA / Sentinel
+│
+├── k8s/
+│   ├── base/
+│   ├── overlays/{dev,staging,prod}   # Kustomize
+│   ├── helm/
+│   └── argocd/                   # GitOps
 │
 ├── observability/
-│   └── prometheus.yaml
+│   ├── metrics/                  # Prometheus rules
+│   ├── logs/                     # OpenSearch configs
+│   ├── tracing/                  # Jaeger/Tempo
+│   └── dashboards/               # Grafana JSON
 │
-└── .github/
-    └── workflows/
-        └── ci.yaml
+├── security/
+│   ├── rbac/
+│   ├── network-policies/
+│   ├── secrets/                  # External Secrets
+│   └── compliance/               # RBI / PCI controls mapping
+│
+├── data-contracts/
+│   ├── schemas/
+│   └── registry/                 # schema registry config
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   ├── e2e/
+│   └── chaos/
+│
+├── scripts/
+│   ├── bootstrap.sh
+│   └── load-test.sh
+│
+└── .github/workflows/
+
 ```
