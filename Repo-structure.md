@@ -1,3 +1,7 @@
+# Repository Structure
+
+```text
+
 threat-intel-platform/
 ├── README.md
 ├── docker-compose.yaml
@@ -36,3 +40,4 @@ threat-intel-platform/
 └── .github/
     └── workflows/
         └── ci.yaml
+```
