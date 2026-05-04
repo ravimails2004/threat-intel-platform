@@ -28,7 +28,7 @@ services:
         condition: service_started
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318/v1/traces
       OTEL_SERVICE_NAME: ingestion-service
     restart: unless-stopped
 
@@ -41,7 +41,7 @@ services:
         condition: service_healthy
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318/v1/traces
       OTEL_SERVICE_NAME: inference-service
     restart: unless-stopped
 
@@ -54,7 +54,7 @@ services:
         condition: service_started
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318/v1/traces
       OTEL_SERVICE_NAME: processor-service
     restart: unless-stopped
 
@@ -65,7 +65,7 @@ services:
         condition: service_healthy
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318/v1/traces
     restart: unless-stopped
 
   otel-collector:
