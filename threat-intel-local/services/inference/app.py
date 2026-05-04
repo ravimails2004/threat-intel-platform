@@ -8,7 +8,7 @@ from otel import setup_otel
 
 app = FastAPI()
 
-tracer = setup_otel("inference-service")
+tracer = setup_otel()
 propagator = TraceContextTextMapPropagator()
 
 

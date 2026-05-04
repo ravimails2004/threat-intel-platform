@@ -6,7 +6,7 @@ from opentelemetry import trace
 
 from otel import setup_otel
 
-tracer = setup_otel("alert-service")
+tracer = setup_otel()
 propagator = TraceContextTextMapPropagator()
 
 consumer = KafkaConsumer(

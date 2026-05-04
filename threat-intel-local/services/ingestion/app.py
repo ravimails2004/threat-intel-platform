@@ -6,7 +6,7 @@ from opentelemetry import trace
 
 from otel import setup_otel
 
-tracer = setup_otel("ingestion-service")
+tracer = setup_otel()
 propagator = TraceContextTextMapPropagator()
 
 producer = KafkaProducer(
